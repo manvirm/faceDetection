@@ -39,7 +39,11 @@ while True:
     # Pause code so image will show until key is pressed
     # Instead of waiting for key, we wait 1ms, so wont pause until key is pressed
     # Wait is needed so popup will stay
-    cv2.waitKey(1)
+    key = cv2.waitKey(1)
+
+    # If Q is pressed, stop loop (ASCII CODE FOR Q)
+    if key == 81 or key == 113:
+        break
 
 '''
 # Must convert image to grayscale for algorithm to recognize
