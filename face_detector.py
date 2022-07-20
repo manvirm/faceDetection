@@ -1,5 +1,6 @@
 # Read images, videos, etc
 import cv2
+import random
 
 # Load pre-trained data on face frontals from opencv (haar cascade algo)
 # Classifiers are detectors (face detector in this case)
@@ -26,9 +27,13 @@ face_coordinates = trained_face_data.detectMultiScale(grayscaled_img)
 # Last argument is the thickness of rectangle
 #cv2.rectangle(img, (top left), (222+width, 292+height),  (0, 0, 255), 2)
 #cv2.rectangle(img, (222, 292), (222+340, 292+340),  (0, 0, 255), 2)
-(x, y, w, h) = face_coordinates[0]
 
-cv2.rectangle(img, (x,y), (x+w, y+h), (0,0,255), 2)
+for (x, y, w, h) in face_coordinates:
+
+    r1 = random.randint(0, 255)
+    r2 = random.randint(0, 255)
+    r3 = random.randint(0, 255)
+    cv2.rectangle(img, (x,y), (x+w, y+h), (r1, r2, r3), 5)
 
 # Show image
 cv2.imshow('Programming Face Detector', img)
