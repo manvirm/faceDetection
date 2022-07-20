@@ -8,8 +8,40 @@ trained_face_data = cv2.CascadeClassifier('haarcascade_frontalface_default.xml')
 
 # Choose an image to detect faces (imread = image read)
 # Image is just an array (pixels = numbers)
-img = cv2.imread('kreeves.jpg')
+#img = cv2.imread('kreeves.jpg')
 
+# Use webcam, '0' will use default webcam
+# Can also use videos for this
+webcam = cv2.VideoCapture(0)
+
+# Iterate over frames until video ends (webcam ends)
+
+while True:
+
+    # Read frames, first var is boolean, and second one is frame
+    # Use frame instead of image
+    successful_frame_read, frame = webcam.read()
+
+    grayscaled_frame = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
+
+    # Detect faces
+    # No matter size of face it will detect (multi scale)
+    face_coordinates = trained_face_data.detectMultiScale(grayscaled_frame)
+
+
+    for (x, y, w, h) in face_coordinates:
+
+        cv2.rectangle(frame, (x,y), (x+w, y+h), (0, 0, 255), 5)
+
+    # Show Frame
+    cv2.imshow('Programming Face Detector', frame)
+
+    # Pause code so image will show until key is pressed
+    # Instead of waiting for key, we wait 1ms, so wont pause until key is pressed
+    # Wait is needed so popup will stay
+    cv2.waitKey(1)
+
+'''
 # Must convert image to grayscale for algorithm to recognize
 # This function converts image to specific colors
 grayscaled_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
@@ -40,3 +72,4 @@ cv2.imshow('Programming Face Detector', img)
 
 # Pause code so image will show until key is pressed
 cv2.waitKey()
+'''
