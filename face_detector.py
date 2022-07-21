@@ -45,7 +45,15 @@ while True:
     if key == 81 or key == 113:
         break
 
+# Clean up code
+webcam.release()
+
 '''
+# Choose an image to detect faces (imread = image read)
+# Image is just an array (pixels = numbers)
+img = cv2.imread('kreeves.jpg')
+
+
 # Must convert image to grayscale for algorithm to recognize
 # This function converts image to specific colors
 grayscaled_img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
